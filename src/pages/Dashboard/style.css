@@ -1,0 +1,114 @@
+.body {
+  background: #ecf0f3;
+  display: flex;
+  align-items: flex-start;
+  /* width: 100%;*/
+  min-height: 100vh;
+}
+.side-bar {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 300px;
+  /* min-height: 100%; */
+  background: #ecf0f3;
+  padding: 12px;
+  /* box-shadow: -3px -3px 7px #fff, 3px 3px 5px #ceced1, inset -3px -3px 7px #fff, */
+  /* inset 3px 3px 5px #ceced1; */
+  transition: all 0.4s ease;
+}
+.side-bar .title {
+  display: flex;
+  justify-content: space-evenly;
+}
+.side-bar .title .logo {
+  font-size: 27px;
+  font-weight: 600;
+  color: #31344b;
+}
+.side-bar .ul {
+  margin-top: 35px;
+  list-style: none;
+}
+.side-bar .ul a {
+  color: #31344b;
+  text-decoration: none;
+  display: block;
+  margin-top: 15px;
+  font-size: 23px;
+  font-weight: 400;
+  border-radius: 10px;
+  box-shadow: -3px -3px 7px #fff, 3px 3px 5px #ceced1;
+  position: relative;
+}
+
+.side-bar .ul .active {
+  box-shadow: inset -3px -3px 7px #fff, inset 3px 3px 5px #ceced1;
+  transition: all 0.7s ease;
+}
+
+.side-bar .ul .active a {
+  color: #3498db;
+}
+
+.side-bar .ul a:hover::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: inset -3px -3px 7px #fff, inset 3px 3px 5px #ceced1;
+  transition: all 0.7s ease;
+  border-radius: 10px;
+}
+.side-bar .ul a:hover {
+  color: #3498db;
+}
+.side-bar .ul i {
+  margin-right: 10px;
+  font-size: 23px;
+  padding: 17px 25px;
+}
+label {
+  font-size: 25px;
+  color: #31344b;
+  box-shadow: -3px -3px 7px #fff, 3px 3px 5px #ceced1;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 42px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.bars {
+  position: absolute;
+  left: 15px;
+  top: 15px;
+}
+label:hover {
+  box-shadow: inset -3px -3px 7px #fff, inset 3px 3px 5px #ceced1;
+  color: #3498db;
+}
+#check {
+  display: none;
+}
+#check:checked ~ .side-bar {
+  left: 0;
+}
+.page {
+  background: #ecf0f3;
+  box-shadow: -3px -3px 7px #fff, 3px 3px 5px #ceced1, inset -3px -3px 7px #fff,
+    inset 3px 3px 5px #ceced1;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  background-color: #ecf0f3;
+  align-items: center;
+  width: 100vw;
+  /* height: 100vh; */
+  flex-direction: column;
+}
