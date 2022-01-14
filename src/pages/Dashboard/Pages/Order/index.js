@@ -19,7 +19,7 @@ import Image from "../../../../assests/6595158_preview1.png";
 
 function OrderPage() {
   let [open, setOpen] = useState(false);
-  let [list, setList] = useState([{}, {}, {}]);
+  let [list, setList] = useState([{}, {}, {},{},{}]);
 
   const onClickDrop = () => {
     setOpen((preState) => !preState);

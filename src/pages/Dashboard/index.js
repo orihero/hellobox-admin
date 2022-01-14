@@ -13,6 +13,11 @@ import ProdoctsPage from './Pages/Prodocts';
 import SettingsPage from './Pages/Settings';
 import AddNewPage from './Pages/Prodocts/Addnew';
 import AddNewPag from './Pages/Patners/Addnew';
+import Edit from "./Pages/Prodocts/Edit";
+import EditPartner from "./Pages/Patners/Edit";
+import Categories from "./Pages/Categories";
+import AddCategory from "./Pages/Categories/AddCategory";
+import EditCategory from "./Pages/Categories/EditCategory";
 function Dashboard() {
 	let { path } = useRouteMatch();
 	return (
@@ -71,6 +76,31 @@ function Dashboard() {
 						exact
 						path='/dashboard/patners/addnew'
 						component={AddNewPag}
+					/>
+					<Route
+						exact
+						path='/dashboard/prodocts/edit/:id'
+						component={Edit}
+					/>
+					<Route
+						exact
+						path='/dashboard/partners/edit/:id'
+						component={EditPartner}
+					/>
+					<Route
+						exact
+						path={`/dashboard/categories`}
+						component={Categories}
+					/>
+					<Route
+						exact
+						path={`/dashboard/category/addnew`}
+						component={AddCategory}
+					/>
+					<Route
+						exact
+						path={`/dashboard/category/edit/:id`}
+						component={EditCategory}
 					/>
 				</Switch>
 			</div>

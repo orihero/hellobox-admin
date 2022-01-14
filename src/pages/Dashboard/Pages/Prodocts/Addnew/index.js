@@ -29,7 +29,7 @@ import {
 	Iconn,
 } from './style';
 import Swal from 'sweetalert2';
-import { useHistory } from 'react-router-dom';
+import {NavLink, useHistory} from 'react-router-dom';
 
 function AddNewPage() {
 	let _imageInput = useRef();
@@ -282,7 +282,7 @@ function AddNewPage() {
 				);
 			})}
 			<CanacelSaveContainer>
-				<Cancel>Cancel</Cancel>
+				<Cancel><NavLink to="/dashboard/prodocts">Cancel</NavLink></Cancel>
 				<Cancel onClick={onSave}>Save</Cancel>
 			</CanacelSaveContainer>
 		</Container>

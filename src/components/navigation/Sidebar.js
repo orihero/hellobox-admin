@@ -52,6 +52,12 @@ export default function Sidebar() {
               <i class="bx bx-cog"></i>Settings
             </Link>
           </li>
+
+          <li className={isActive(`${path}/categories`) ? "active" : ""}>
+            <Link to={`${path}/categories`}>
+              <i className="bx bx-cog"></i>Categories
+            </Link>
+          </li>
         </ul>
       </div>
     </div>

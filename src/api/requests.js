@@ -10,12 +10,15 @@ export let requests = {
 	partners: {
 		getPartners: () => axios.get(`${url}/partner`),
 		addPartner: (credentials) => axios.post(`${url}/partner`, credentials),
+		deletePartner: (id) => axios.delete(`${url}/partner/${id}`),
+		editPartner:(credentials)=>axios.put(`${url}/partner`,credentials)
 	},
 	products: {
 		getProducts: () => axios.get(`${url}/product`),
 		createProduct: (credentails) =>
 			axios.post(`${url}/product`, credentails),
 		deleteProduct: (id) => axios.delete(`${url}/product/${id}`),
+		editProduct: (credentails)=>axios.put(`${url}/product`,credentails)
 	},
 	order: {
 		getOrder: () => axios.get(`${url}/order`),
@@ -30,5 +33,9 @@ export let requests = {
 	},
 	category: {
 		getCategories: () => axios.get(`${url}/category`),
+		deleteCategory: (id) => axios.delete(`${url}/category/${id}`),
+		createCategory: (credentails) =>
+			axios.post(`${url}/category`, credentails),
+		editCategory: (credentails)=>axios.put(`${url}/category`,credentails)
 	},
 };

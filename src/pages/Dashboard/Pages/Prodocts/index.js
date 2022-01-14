@@ -17,6 +17,7 @@ import {
 import s from 'sweetalert2';
 
 function ProductsPage() {
+	const link="/dashboard/prodocts/edit/"
 	const [products, setProducts] = useState([]);
 	let effect = async () => {
 		try {
@@ -64,6 +65,7 @@ function ProductsPage() {
 				</Addnew>
 			</Link>
 			{products?.map((e) => {
+				console.log(e)
 				return (
 					<ProdoctsBox>
 						<Table>
@@ -80,9 +82,33 @@ function ProductsPage() {
 							</Tr>
 						</Table>
 						<Icon>
-							<IconBox>
-								<i class='bx bxs-edit'></i>
-							</IconBox>
+
+							<Link
+								style={{
+								textDecoration: 'none',
+							}}
+								to=
+									{
+										{
+											pathname: `${link}${e.id}`,
+											editProps:{
+												id:e.id,
+												img_url:e.image_url,
+												price:e.price,
+												categoryName:e.category.name,
+												expires:e.expires_in,
+												desc:e.description,
+												name:e.name,
+												profit:e.profit_percent
+											}
+										}
+									}
+
+							>
+								<IconBox>
+									<i class='bx bxs-edit'></i>
+								</IconBox>
+							</Link>
 							<IconBox onClick={() => onDelete(e.id)}>
 								<i class='bx bx-trash-alt'></i>
 							</IconBox>
