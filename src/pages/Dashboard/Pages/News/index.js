@@ -78,11 +78,11 @@ function NewsPage() {
 
   let onSend = async () => {
     console.log(state);
-    let { image_url, description, selectedPartnerIndex } = state;
+    let { image_url, description,  } = state;
     let res = await requests.news.createAndSend({
       image_url,
       description,
-      partner_id: state.partners[state.selectedPartnerIndex].id,
+      partner_id: !!state.selectedPartnerIndex ? state.partners[state.selectedPartnerIndex].id : null,
     });
   };
 
