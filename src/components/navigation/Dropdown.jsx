@@ -11,7 +11,7 @@ function Dropdown({
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
-    console.log({ data });
+    console.log({ data },"DATA INSIDE");
   }, []);
   return (
     <div className="dropdown">

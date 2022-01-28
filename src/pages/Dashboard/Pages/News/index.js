@@ -1,25 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
+import { requests, url } from "../../../../api/requests";
+import img from "../../../../assests/6595158_preview1.png";
 import Dropdown from "../../../../components/navigation/Dropdown";
 import {
-  Container,
-  NewsBox,
-  ImgBox,
-  ImgContainer,
-  ButtonContainer,
-  Img,
-  Button,
-  TextareBox,
-  Textarea,
   Botton,
-  BottonBox,
-  ContainerNew,
-  // Select,
-  DropDownSlecet,
-  ImgBoxx,
-  // IconSelect,
+  BottonBox, Button, ButtonContainer, Container, ContainerNew, Img, ImgBox, ImgBoxx, ImgContainer, NewsBox, Textarea, TextareBox
 } from "./style";
-import img from "../../../../assests/6595158_preview1.png";
-import { requests, url } from "../../../../api/requests";
 function NewsPage() {
   const [state, setState] = useState({});
   const fileRef = useRef(null);
@@ -27,6 +13,7 @@ function NewsPage() {
   let effect = async () => {
     let partnerRes = await requests.partners.getPartners();
     setState({ ...state, partners: partnerRes.data });
+    console.log(partnerRes.data,"DATA");
   };
 
   useEffect(() => {
@@ -34,9 +21,9 @@ function NewsPage() {
   }, []);
 
   let getProducts = async () => {
-    if (state.selectedPartnerIndex) {
+    if (state.selectedPartner) {
       let productRes = await requests.products.getProducts(
-        state.partners[state.selectedPartnerIndex].id
+        state.selectedPartner.id
       );
       setState({ ...state, products: productRes.data });
     }
@@ -44,7 +31,7 @@ function NewsPage() {
 
   useEffect(() => {
     getProducts();
-  }, [state.selectedPartnerIndex]);
+  }, [state.selectedPartner]);
 
   let onImageChange = async (e) => {
     try {
@@ -77,12 +64,12 @@ function NewsPage() {
   };
 
   let onSend = async () => {
-    console.log(state);
     let { image_url, description,  } = state;
     let res = await requests.news.createAndSend({
       image_url,
       description,
-      partner_id: !!state.selectedPartnerIndex ? state.partners[state.selectedPartnerIndex].id : null,
+      partner_id: !!state.selectedPartner ? state.selectedPartner?.id : null,
+      product_id: !!state.selectedProduct ? state.selectedProduct?.id : null,
     });
   };
 
@@ -114,16 +101,18 @@ function NewsPage() {
             </TextareBox>
             <BottonBox>
               <Dropdown
-                data={state.partners?.map((e) => e.name)}
-                selected={state.selectedPartnerIndex}
-                setSelected={onChangeSelect}
-                name="selectedPartnerIndex"
+                data={state.partners||[]}
+                setSelected={(e)=>setState({...state,selectedPartner:e})}
+                selected={state.selectedPartner?.id}
+                placeholder={'Select Partner'}
+                name={state.selectedPartner?state.selectedPartner.name:"Select Partner"}
               />
               <Dropdown
-                placeholder={"Select Partner first"}
-                selected={state.selectedProductIndex}
-                setSelected={onChangeSelect}
-                name="selectedProductIndex"
+                data={state.products||[]}
+                setSelected={(e)=>setState({...state,selectedProduct:e})}
+                selected={state.selectedProduct?.id}
+                placeholder={'Select Product'}
+                name={state.selectedProduct?state.selectedProduct.name:"Select Product"}
               />
               <Botton onClick={onSend}>Send </Botton>
             </BottonBox>
