@@ -265,12 +265,13 @@ function AddNewPage() {
 							value={!!img ? img.name : ''}
 							onChange={(e) => {
 								let newImages = images.map((image, i) => {
-									if (i == index) {
+									if (i === index) {
 										return {
-											image_url: image.image_url,
+											image_url: image?.image_url,
 											name: e.target.value,
 										};
 									}
+									return image
 								});
 								setImages(newImages);
 							}}

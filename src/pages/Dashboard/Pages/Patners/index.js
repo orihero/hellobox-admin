@@ -20,13 +20,19 @@ import {
 } from "./style";
 import ImgCutonmer from "../../../../assests/wp2803554.jpeg";
 import s from "sweetalert2";
+import Dropdown from "../../../../components/navigation/Dropdown";
+import { useHistory } from "react-router-dom";
 function PatersPage() {
   const link="/dashboard/partners/edit/"
   const [partners, setPartners] = useState([])
+  const [users, setUsers] = useState([])
+  let history = useHistory();
   let effect = async () => {
     try {
       let res = await requests.partners.getPartners()
       setPartners(res.data)
+      res = await requests.users.getPartnerUsers();
+      setUsers(res.data)
     } catch (error) {
 
     }
@@ -34,7 +40,14 @@ function PatersPage() {
   useEffect(() => {
     effect()
   }, [])
-
+  let onSelect = async(user,partner_id)=>{
+    try {
+      let res = requests.users.editUser({...user,partner_id})
+      history.replace("/dashboard/patners")
+    } catch (error) {
+      
+    }
+  }
   let onDelete = async (id) => {
     try {
       let res = await s.fire({
@@ -68,6 +81,8 @@ function PatersPage() {
         </Link>
       </Addnew>
       {partners?.map(e => {
+        let user = users.find(el=>el.partner_id===e.id)
+        console.log({user,e:e});
         return <PartnerBox>
           <Table>
             <Tr onClick={()=>{
@@ -80,12 +95,20 @@ function PatersPage() {
                   </ImgBox>
                   <NameBox>
                     <Name>{e.name}</Name>
-                    {/* <FirstName>Sinhanya</FirstName> */}
                   </NameBox>
                 </TdContainer>
               </Td>
               <Td>Address: {e.address}</Td>
-              <Td>Category: Producta </Td>
+              <Td><Dropdown
+							data={users?.length ? users.map(e=>({...e,name:e.first_name+" "+e.phone})) : []}
+							setSelected={(el)=>onSelect(el,e.id)}
+							selected={
+								e.partner_id
+							}
+							placeholder={'Select user'}
+							name={user?.first_name+" "+user?.phone}
+						/> </Td>
+              
             </Tr>
           </Table>
           <Icon>
