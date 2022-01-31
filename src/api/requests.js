@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-// export let url = 'https://hellobox.uz/api';
+export let url = 'https://hellobox.uz/api';
 // export let url = 'http://localhost:8081/api';
-export let url = 'http://192.168.31.87:8081/api';
+// export let url = 'http://192.168.31.87:8081/api';
 
 export let requests = {
     news: {
