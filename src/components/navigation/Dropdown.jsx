@@ -7,22 +7,23 @@ function Dropdown({
   data = [],
   placeholder = "Choose one",
   name = "",
+  zIndex = 0,
 }) {
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
-    console.log({ data },"DATA INSIDE");
+    console.log({ data }, "DATA INSIDE");
   }, []);
   return (
     <div className="dropdown">
       <div className="dropdown-btn" onClick={(e) => setIsActive(!isActive)}>
         {selected === -1
           ? placeholder
-          : data.find((option) => option.id == selected).name}
+          : data.find((option) => option.id == selected)?.name}
         <i class="bx bxs-down-arrow"></i>
       </div>
       {isActive && (
-        <div className="dropdown-content">
+        <div className="dropdown-content" style={{ zIndex }}>
           <div
             onClick={() => {
               setSelected({ value: -1, name });

@@ -19,6 +19,9 @@ export let requests = {
     createProduct: (credentails) => axios.post(`${url}/product`, credentails),
     deleteProduct: (id) => axios.delete(`${url}/product/${id}`),
     editProduct: (credentails) => axios.put(`${url}/product`, credentails),
+    updateProfitPercent: (percent) =>
+      axios.put(`${url}/profit-percent`, { percent, id: 1 }),
+    getProfitPercent: () => axios.get(`${url}/profit-percent`),
   },
   order: {
     getOrder: () => axios.get(`${url}/order`),
@@ -26,6 +29,8 @@ export let requests = {
   },
   uploads: {
     uploadImage: (credentails) => axios.post(`${url}/file-upload`, credentails),
+    updatePresentImage: (creds) =>
+      axios.post(`${url}/update-present-image`, creds),
   },
   users: {
     getUsers: () => axios.get(`${url}/users`),
