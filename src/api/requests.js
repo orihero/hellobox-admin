@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// export let url = "https://hellobox.uz/api";
-export let url = "http://localhost:8081/api";
+export let url = "https://hellobox.uz/api";
+// export let url = "http://localhost:8081/api";
 // export let url = 'http://192.168.31.87:8081/api';
 
 export let requests = {
@@ -42,5 +42,8 @@ export let requests = {
     deleteCategory: (id) => axios.delete(`${url}/category/${id}`),
     createCategory: (credentails) => axios.post(`${url}/category`, credentails),
     editCategory: (credentails) => axios.put(`${url}/category`, credentails),
+  },
+  order: {
+    getOrders: () => axios.get(`${url}/orders`),
   },
 };
