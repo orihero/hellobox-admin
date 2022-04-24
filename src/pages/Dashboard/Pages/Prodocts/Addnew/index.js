@@ -46,6 +46,7 @@ function AddNewPage() {
   let [images, setImages] = useState([]);
   let [price, setPrice] = useState(0);
   let [profit, setProfit] = useState(0);
+  const [expire, setExpire] = useState(0);
 
   let effect = async () => {
     console.log("loading category");
@@ -142,7 +143,7 @@ function AddNewPage() {
         description: desc,
         image_url: image.image_url,
         profit_percent: parseInt(profit),
-        expires_in: ,
+        expires_in: parseInt(expire),
         options: images,
         partner_id: selectedPartners.id,
       });
@@ -155,6 +156,7 @@ function AddNewPage() {
       history.push("/dashboard/prodocts");
     } catch (error) {
       console.error(error);
+      Swal.hideLoading();
     }
   };
 
@@ -214,7 +216,11 @@ function AddNewPage() {
               value={price}
               onChange={(e) => setPrice(e.target.value)}
             />
-            <Inputt placeholder="expire" />
+            <Inputt
+              value={expire}
+              onChange={(e) => setExpire(e.target.value)}
+              placeholder="expire"
+            />
             <Inputt
               placeholder="profit"
               value={profit}
